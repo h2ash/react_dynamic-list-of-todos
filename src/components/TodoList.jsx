@@ -6,9 +6,15 @@ const TodoList = ({ sortedTodoList, rulesOfSort }) => (
     <thead>
       <tr>
         <th>ID</th>
-        <th onClick={rulesOfSort}>Content</th>
-        <th>Name</th>
-        <th>Completed</th>
+        <th onClick={() => {
+          rulesOfSort('byTitle')
+        }}>Content</th>
+        <th onClick={() => {
+          rulesOfSort('byName')
+        }}>Name</th>
+        <th onClick={() => {
+          rulesOfSort('byCompleted')
+        }}>Completed</th>
       </tr>
     </thead>
     <tbody>

@@ -38,16 +38,25 @@ class App extends React.Component {
     })
   }
 
-  rulesOfSort = () => (
+  rulesOfSort = (target) => {
     this.setState(state => ({
       direction: state.direction === 1 ? -1 : 1,
       sortedTodoList: [...state.todoList].sort(
-        (a, b) => a.title.localeCompare(b.title) * state.direction
-        // (a, b) => (a - b)
-        //  
-      )
+        (a, b) => {
+          switch(target) {
+            case 'byTitle': 
+              return a.title.localeCompare(b.title) * state.direction;
+            case 'byName':
+              return a.user.name.localeCompare(b.user.name) * state.direction;
+            case 'byCompleted':
+              return (b.completed - a.completed) * state.direction;
+            default: 
+              return 0;
+          }
+        }
+      ),
     }))
-  )
+  }
 
   render() {
     return (
